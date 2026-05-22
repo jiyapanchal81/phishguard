@@ -1,0 +1,12 @@
+# Python virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# SQLite database (created automatically when the app runs)
+phishguard.db
+
+# macOS system files
+.DS_Store

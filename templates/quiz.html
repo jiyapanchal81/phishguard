@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Quiz — PhishGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">🛡️ PhishGuard</h1>
+            <p class="tagline"><a href="/" class="back-link">← Back to home</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="feature-page">
+            <h2>🎯 Security Awareness Quiz</h2>
+            <p class="lead">Answer all five questions, then submit to see your score.</p>
+
+            <form method="POST" class="quiz-form">
+                {% for question in questions %}
+                {% set qloop = loop %}
+                <div class="quiz-question">
+                    <p class="question-text">{{ loop.index }}. {{ question.question }}</p>
+                    {% for option in question.options %}
+                    <label class="quiz-option">
+                        <input type="radio" name="q{{ qloop.index0 }}" value="{{ loop.index0 }}" required>
+                        {{ option }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <button type="submit">Submit answers</button>
+            </form>
+
+            {% if result %}
+            <div class="result">
+                <h3>You scored {{ result.score }} out of {{ result.total }}</h3>
+                {% for item in result.feedback %}
+                <div class="feedback-item {{ 'fb-correct' if item.is_correct else 'fb-wrong' }}">
+                    <p class="fb-question">{{ item.question }}</p>
+                    {% if item.is_correct %}
+                    <p class="fb-result">✓ Correct</p>
+                    {% else %}
+                    <p class="fb-result">✗ Wrong — correct answer: {{ item.correct_answer }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>PhishGuard — student project for Professional Development (S2-PFD200).</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard — Security Awareness Toolkit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">🛡️ PhishGuard</h1>
+            <p class="tagline">Practical tools to help you stay safe online.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="home-intro">
+            <h2>A small security awareness toolkit</h2>
+            <p>PhishGuard helps everyday users make safer decisions online — check if a password is strong, spot phishing links, recognise suspicious messages, report incidents, and test what you know.</p>
+        </section>
+
+        <div class="home-grid">
+            <a href="/password" class="home-card">
+                <h3>🔐 Password Strength Checker</h3>
+                <p>Test how strong your password really is.</p>
+            </a>
+
+            <a href="/url" class="home-card">
+                <h3>🔗 Phishing URL Checker</h3>
+                <p>Paste a link and find out whether it looks suspicious.</p>
+            </a>
+
+            <a href="/message" class="home-card">
+                <h3>📧 Suspicious Message Checker</h3>
+                <p>Paste an email or text to see if it has phishing red flags.</p>
+            </a>
+
+            <a href="/quiz" class="home-card">
+                <h3>🎯 Security Awareness Quiz</h3>
+                <p>Test what you know with five quick questions.</p>
+            </a>
+
+            <a href="/report" class="home-card">
+                <h3>📝 Report an Incident</h3>
+                <p>Spotted a phishing attempt? Log it in the incident database.</p>
+            </a>
+
+            <a href="/incidents" class="home-card">
+                <h3>📋 Incident Log</h3>
+                <p>Browse every phishing incident that has been reported.</p>
+            </a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>PhishGuard — student project for Professional Development (S2-PFD200).</p>
+        </div>
+    </footer>
+</body>
+</html>

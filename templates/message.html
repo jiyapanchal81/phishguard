@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Checker — PhishGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">🛡️ PhishGuard</h1>
+            <p class="tagline"><a href="/" class="back-link">← Back to home</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="feature-page">
+            <h2>📧 Suspicious Message Checker</h2>
+            <p class="lead">Paste an email or text message below to check it for phishing red flags.</p>
+
+            <form method="POST" class="check-form">
+                <textarea name="message" rows="6" placeholder="Paste the email or text message here..." required autofocus></textarea>
+                <button type="submit">Check message</button>
+            </form>
+
+            {% if result %}
+            <div class="result result-{{ result.level }}">
+                <h3>{{ result.rating }} <span class="score">({{ result.count }} red flag{{ '' if result.count == 1 else 's' }})</span></h3>
+                {% if result.flags %}
+                <ul class="check-list">
+                    {% for flag in result.flags %}
+                    <li class="fail">
+                        <span class="check-icon">✗</span>
+                        <span>{{ flag }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No phishing red flags were found in this message.</p>
+                {% endif %}
+            </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>PhishGuard — student project for Professional Development (S2-PFD200).</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Log — PhishGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">🛡️ PhishGuard</h1>
+            <p class="tagline"><a href="/" class="back-link">← Back to home</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="feature-page">
+            <h2>📋 Incident Log</h2>
+            <p class="lead">All phishing incidents that have been reported, newest first. <a href="/report">Report a new one</a>.</p>
+
+            {% if incidents %}
+                {% for incident in incidents %}
+                <div class="incident-card">
+                    <div class="incident-head">
+                        <span class="incident-type">{{ incident['incident_type'] }}</span>
+                        <span class="incident-date">{{ incident['date_reported'] }}</span>
+                    </div>
+                    <p class="incident-desc">{{ incident['description'] }}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="result">
+                    <p>No incidents have been reported yet. Be the first to <a href="/report">report one</a>.</p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>PhishGuard — student project for Professional Development (S2-PFD200).</p>
+        </div>
+    </footer>
+</body>
+</html>

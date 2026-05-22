@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Incident — PhishGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">🛡️ PhishGuard</h1>
+            <p class="tagline"><a href="/" class="back-link">← Back to home</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="feature-page">
+            <h2>📝 Report a Phishing Incident</h2>
+            <p class="lead">Spotted a phishing attempt? Log it here so it's recorded in the incident log.</p>
+
+            {% if saved %}
+            <div class="result result-success">
+                <h3>✓ Thank you — your report has been logged</h3>
+                <p>Your incident has been saved to the database.</p>
+            </div>
+            {% endif %}
+
+            <form method="POST" class="check-form report-form">
+                <label for="incident_type">Type of incident</label>
+                <select name="incident_type" id="incident_type" required>
+                    <option value="">— Choose a type —</option>
+                    <option value="Suspicious URL or Website">Suspicious URL or Website</option>
+                    <option value="Suspicious Email or Message">Suspicious Email or Message</option>
+                    <option value="Phone Call or Text Scam">Phone Call or Text Scam</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="description">Description — what happened?</label>
+                <textarea name="description" id="description" rows="5" placeholder="Describe the phishing attempt you saw..." required></textarea>
+
+                <button type="submit">Submit report</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>PhishGuard — student project for Professional Development (S2-PFD200).</p>
+        </div>
+    </footer>
+</body>
+</html>
