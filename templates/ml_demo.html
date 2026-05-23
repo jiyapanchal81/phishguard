@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Demo — PhishGuard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">🛡️ PhishGuard</h1>
+            <p class="tagline"><a href="/" class="back-link">← Back to home</a></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="feature-page">
+            <h2>🧪 ML Demo — Rules vs Machine Learning</h2>
+            <p class="lead">Paste a message and see how the rule-based checker and a small machine-learning model each judge it.</p>
+
+            <div class="ml-note">
+                <strong>Learning experiment:</strong> the ML model is exploratory, not production-grade.
+                It is a simple Naive Bayes classifier trained on only about 30 example messages, built to
+                bridge toward further study in AI.
+            </div>
+
+            <form method="POST" class="check-form">
+                <textarea name="message" rows="5" placeholder="Paste an email or text message here..." required autofocus></textarea>
+                <button type="submit">Compare</button>
+            </form>
+
+            {% if rule_result and ml_result %}
+            <div class="compare-grid">
+
+                <div class="compare-panel">
+                    <h3>📋 Rule-based checker</h3>
+                    <div class="result result-{{ rule_result.level }}">
+                        <p class="ml-verdict">{{ rule_result.rating }}</p>
+                        <p>{{ rule_result.count }} red flag{{ '' if rule_result.count == 1 else 's' }} found</p>
+                        {% if rule_result.flags %}
+                        <ul class="check-list">
+                            {% for flag in rule_result.flags %}
+                            <li class="fail"><span class="check-icon">✗</span> <span>{{ flag }}</span></li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <p class="panel-note">Uses fixed rules and keyword lists written by hand.</p>
+                </div>
+
+                <div class="compare-panel">
+                    <h3>🤖 ML model</h3>
+                    {% if ml_result.prediction == 'phishing' %}
+                    <div class="result result-danger">
+                        <p class="ml-verdict">Phishing</p>
+                        <p>{{ ml_result.confidence }}% confidence</p>
+                    </div>
+                    {% else %}
+                    <div class="result result-success">
+                        <p class="ml-verdict">Safe</p>
+                        <p>{{ ml_result.confidence }}% confidence</p>
+                    </div>
+                    {% endif %}
+                    <p class="panel-note">No fixed rules — it learned word patterns from the example messages. Trained on so little data, it tends to be overconfident.</p>
+                </div>
+
+            </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>PhishGuard — student project for Professional Development (S2-PFD200).</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import string
 import sqlite3
 from datetime import datetime
+from ml_model import classify_message
 
 app = Flask(__name__)
 
@@ -344,6 +345,18 @@ def report_incident():
 def view_incidents():
     incidents = get_incidents()
     return render_template("incidents.html", incidents=incidents)
+
+
+@app.route("/ml-demo", methods=["GET", "POST"])
+def ml_demo():
+    rule_result = None
+    ml_result = None
+    if request.method == "POST":
+        message = request.form.get("message", "")
+        if message:
+            rule_result = analyze_message(message)
+            ml_result = classify_message(message)
+    return render_template("ml_demo.html", rule_result=rule_result, ml_result=ml_result)
 
 
 if __name__ == "__main__":

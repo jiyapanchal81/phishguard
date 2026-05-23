@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhishGuard — Security Awareness Toolkit</title>
+    <title>PhishGuard — Stay Safe Online</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -15,42 +15,46 @@
     </header>
 
     <main class="container">
-        <section class="home-intro">
+        <section class="hero">
             <h2>A small security awareness toolkit</h2>
-            <p>PhishGuard helps everyday users make safer decisions online — check if a password is strong, spot phishing links, recognise suspicious messages, report incidents, and test what you know.</p>
+            <p>
+                PhishGuard helps everyday users make safer decisions online —
+                check if a password is strong, spot phishing links, recognise
+                suspicious messages, report incidents, and test what you know.
+                It also includes a small, exploratory machine-learning demo.
+            </p>
         </section>
 
-        <div class="home-grid">
-            <a href="/password" class="home-card">
+        <section class="card-grid">
+            <a class="card" href="{{ url_for('password_checker') }}">
                 <h3>🔐 Password Strength Checker</h3>
                 <p>Test how strong your password really is.</p>
             </a>
-
-            <a href="/url" class="home-card">
+            <a class="card" href="{{ url_for('url_checker') }}">
                 <h3>🔗 Phishing URL Checker</h3>
                 <p>Paste a link and find out whether it looks suspicious.</p>
             </a>
-
-            <a href="/message" class="home-card">
+            <a class="card" href="{{ url_for('message_checker') }}">
                 <h3>📧 Suspicious Message Checker</h3>
                 <p>Paste an email or text to see if it has phishing red flags.</p>
             </a>
-
-            <a href="/quiz" class="home-card">
+            <a class="card" href="{{ url_for('quiz') }}">
                 <h3>🎯 Security Awareness Quiz</h3>
                 <p>Test what you know with five quick questions.</p>
             </a>
-
-            <a href="/report" class="home-card">
+            <a class="card" href="{{ url_for('report_incident') }}">
                 <h3>📝 Report an Incident</h3>
                 <p>Spotted a phishing attempt? Log it in the incident database.</p>
             </a>
-
-            <a href="/incidents" class="home-card">
+            <a class="card" href="{{ url_for('view_incidents') }}">
                 <h3>📋 Incident Log</h3>
                 <p>Browse every phishing incident that has been reported.</p>
             </a>
-        </div>
+            <a class="card" href="{{ url_for('ml_demo') }}">
+                <h3>🧪 ML Demo</h3>
+                <p>See a rule-based check and a machine-learning model judge a message side by side.</p>
+            </a>
+        </section>
     </main>
 
     <footer class="site-footer">

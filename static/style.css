@@ -365,3 +365,43 @@ main { flex: 1; padding-bottom: 3rem; }
         grid-template-columns: 1fr;
     }
 }
+/* ---- ML demo page ---- */
+.ml-note {
+    background: #fff7e6;
+    border: 1px solid #f0c97a;
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #6b5320;
+    font-size: 0.95rem;
+}
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.compare-panel h3 {
+    margin: 0 0 0.6rem 0;
+    color: #0f2a47;
+}
+
+.ml-verdict {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem 0;
+}
+
+.panel-note {
+    font-size: 0.88rem;
+    color: #6b7280;
+    margin-top: 0.7rem;
+}
+
+@media (max-width: 600px) {
+    .compare-grid {
+        grid-template-columns: 1fr;
+    }
+}
