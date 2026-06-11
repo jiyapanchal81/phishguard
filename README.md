@@ -44,4 +44,10 @@ The core detection relies on fixed rules and keyword lists, and the machine-lear
 
 ## Author
 
-Student project for Professional Development (S2-PFD200).
+**Jiya Panchal** — FdSc Computing student
+Built for the Professional Development module (S2-PFD200).
+
+- Portfolio: https://jiyapanchal81.github.io
+- GitHub: https://github.com/jiyapanchal81
+- LinkedIn: https://www.linkedin.com/in/jiyapanchal81
+
